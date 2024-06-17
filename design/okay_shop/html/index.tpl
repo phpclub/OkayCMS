@@ -52,7 +52,7 @@
                     <div class="header__logo logo">
                         {if !empty({$settings->site_logo})}
                         <a class="logo__link " href="{if $controller=='MainController'}javascript:;{else}{url_generator route='main'}{/if}">
-                            {if strtolower(pathinfo($settings->site_logo, $smarty.const.PATHINFO_EXTENSION)) == 'svg'}
+                            {if strtolower($settings->site_logo|pathinfo) == 'svg'}
                                 {$settings->site_logo|read_svg:$config->design_images}
                             {else}
                                 <img src="{$rootUrl}/{$config->design_images|escape}{$settings->site_logo|escape}?v={$settings->site_logo_version|escape}" alt="{$settings->site_name|escape}"/>
@@ -300,7 +300,7 @@
                         </div>
                         <div class="footer__content footer__social social footer__hidden">
                             {foreach $site_social as $social}
-                                <a class="social__link {$social.domain|escape}" rel="noreferrer" aria-label="{$social_domain}" href="{if !preg_match('~^https?://.*$~', $social.url)}https://{/if}{$social.url|escape}" target="_blank" title="{$social.domain|escape}">
+                                <a class="social__link {$social.domain|escape}" rel="noreferrer" aria-label="{$social_domain}" href="{if $social.url|preg_match:'~^https?://.*$~'}https://{/if}{$social.url|escape}" target="_blank" title="{$social.domain|escape}">
                                     <i class="fa fa-{$social.domain|escape}"></i>
                                 </a>
                             {/foreach}

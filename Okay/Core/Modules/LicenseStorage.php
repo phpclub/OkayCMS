@@ -12,7 +12,6 @@ class LicenseStorage
     public function __construct(string $compileCodeDir)
     {
         $this->compileCodeDir = $compileCodeDir;
-
         if (!is_dir($this->compileCodeDir)) {
             mkdir($this->compileCodeDir, 0777, true);
         }

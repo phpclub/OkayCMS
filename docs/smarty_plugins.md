@@ -114,7 +114,7 @@ class GetNewProducts extends Func
         $this->productsHelper = $productsHelper;
     }
 
-    public function run($params, \Smarty_Internal_Template $smarty)
+    public function run($params, \Smarty\Template $smarty)
     {
         if (!empty($params['var'])) {
             $products = $this->productsHelper->getProductList($params);

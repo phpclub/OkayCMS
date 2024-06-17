@@ -105,10 +105,8 @@ class BannerImageSettingsDTO implements \JsonSerializable
         }
     }
 
-    /**
-     * @return int
-     */
-    public function getMobileWidth(): int
+
+    public function getMobileWidth()
     {
         return $this->mobileWidth;
     }
@@ -140,7 +138,7 @@ class BannerImageSettingsDTO implements \JsonSerializable
             $this->mobileHeight = $mobileHeight;
         }
     }
-
+	#[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return get_object_vars($this);

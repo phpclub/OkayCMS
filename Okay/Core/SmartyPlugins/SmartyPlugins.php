@@ -214,6 +214,21 @@ $plugins = [
             new SR(Image::class),
         ],
     ],
+	Plugins\Pathinfo::class => [
+		'class' => Plugins\Pathinfo::class,
+	],
+	Plugins\Trim::class => [
+		'class' => Plugins\Trim::class,
+	],
+	Plugins\Strtolower::class => [
+		'class' => Plugins\Strtolower::class,
+	],
+	Plugins\Pregreplace::class => [
+		'class' => Plugins\Pregreplace::class,
+	],
+	Plugins\Pregmatch::class => [
+		'class' => Plugins\Pregmatch::class,
+	],
 ];
 
 $DI->bindServices($plugins);

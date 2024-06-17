@@ -861,7 +861,7 @@ class FilterHelper
             $resultString .= '?keyword='.htmlspecialchars(strip_tags($keyword));
         }
         if ($smarty !== null) {
-            /** @var \Smarty_Internal_Template $smarty */
+            /** @var \Smarty\Template $smarty */
             $smarty->assign('seo_hide_filter', $seoHideFilter);
         }
         $this->design->assign('seo_hide_filter', $seoHideFilter);
@@ -972,7 +972,7 @@ class FilterHelper
     public function getKeyword(): ?string
     {
         $keyword = $this->request->get('keyword', null, null, false);
-        if ($keyword = strip_tags($keyword)) {
+        if ($keyword = strip_tags($keyword ?? '')) {
             $result = $keyword;
         } else {
             $result = null;

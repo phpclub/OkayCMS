@@ -68,22 +68,26 @@ class SqlQuery implements QueryInterface
         // TODO реализовать
     }
 
-    public function setStatement($statement)
-    {
+	/**
+	 * @param $statement
+	 * @return $this
+	 */
+	public function setStatement($statement): SqlQuery
+	{
         $this->statement = $statement;
         return $this;
     }
 
-    public function bindValues(array $bindValues)
-    {
+    public function bindValues(array $bindValues): SqlQuery
+	{
         foreach($bindValues as $name => $value) {
             $this->bindValues[$name] = $value;
         }
         return $this;
     }
 
-    public function bindValue($name, $value)
-    {
+    public function bindValue($name, $value): SqlQuery
+	{
         $this->bindValues[$name] = $value;
         return $this;
     }

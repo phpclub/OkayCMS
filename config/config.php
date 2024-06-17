@@ -3,16 +3,16 @@
 [database]
 
 ;Сервер базы данных
-db_server = localhost
+db_server = 172.16.0.3
 
 ;Пользователь базы данных
-db_user = root
+db_user = okay
 
 ;Пароль к базе
-db_password = ""
+db_password = "password"
 
 ;Имя базы
-db_name = okaycms-git
+db_name = okaycms
 
 ;Драйвер базы данных
 db_driver = mysql
@@ -42,7 +42,7 @@ php_locale_monetary = ru_RU
 php_locale_numeric = ru_RU
 php_locale_time = ru_RU
 ;php_timezone = Europe/Moscow
-debug_mode = false
+debug_mode = true
 tmp_dir = tmp/
 
 [smarty]
@@ -53,7 +53,7 @@ smarty_debugging = false
 smarty_html_minify = false
 smarty_security = true
 ; Данный параметр может быть полезным при отладке модификаторов tpl файлов
-smarty_force_compile = false
+smarty_force_compile = true
 
 [design]
 debug_translation = false

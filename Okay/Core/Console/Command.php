@@ -18,7 +18,10 @@ class Command extends SymfonyCommand
 {
     use MethodDI;
 
-    /** @var InputInterface */
+	const FAILURE = 0;
+	const SUCCESS = 1;
+
+	/** @var InputInterface */
     protected $input;
 
     /** @var OutputInterface */

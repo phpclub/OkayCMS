@@ -1,0 +1,55 @@
+{
+  "listeners": {
+    "*:80": {
+      "pass": "routes"
+    }
+  },
+  "routes": {
+    "okayinstall": [
+      {
+        "match": {
+          "uri": "/install/*",
+          "uri": "!install/index.php",
+          "uri": "!install/deleteinstall.php"
+        },
+        "action": {
+          "share": "/install$uri",
+          "fallback": {
+            "pass": "applications/okayinstall"
+          }
+        }
+      }
+    ],
+    "main": [
+      {
+        "match": {
+          "uri": "!/index.php"
+        },
+        "action": {
+          "share": "/app$uri",
+          "fallback": {
+            "pass": "applications/okay"
+          }
+        }
+      }
+    ]
+
+  },
+  "applications": {
+    "okay": {
+      "type": "php",
+      "root": "/app/",
+      "script": "index.php",
+      "processes": {
+        "max": 12,
+        "spare": 4,
+        "idle_timeout": 30
+      }
+    },
+    "okayinstall": {
+      "type": "php",
+      "root": "/app/install/",
+      "script": "index.php"
+    }
+  }
+}

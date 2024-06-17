@@ -8,8 +8,9 @@ use Okay\Core\Modules\Module;
 use Okay\Core\Modules\Modules;
 use Okay\Core\TemplateConfig\FrontTemplateConfig;
 use Okay\Core\TplMod\TplMod;
-use Smarty;
 use Mobile_Detect;
+use Smarty\Exception;
+use Smarty\Smarty;
 
 class Design
 {
@@ -20,7 +21,7 @@ class Design
     /**
      * @var Smarty
      */
-    public $smarty;
+    public Smarty $smarty;
 
     /** @var Mobile_Detect */
     public $detect;
@@ -113,7 +114,24 @@ class Design
     ];
 
 
-    public function __construct(
+	/**
+	 * @param Smarty $smarty
+	 * @param Mobile_Detect $mobileDetect
+	 * @param FrontTemplateConfig $frontTemplateConfig
+	 * @param Module $module
+	 * @param Modules $modules
+	 * @param TplMod $tplMod
+	 * @param $smartyCacheLifetime
+	 * @param $smartyCompileCheck
+	 * @param $smartyHtmlMinify
+	 * @param $smartyDebugging
+	 * @param $smartySecurity
+	 * @param $smartyCaching
+	 * @param $smartyForceCompile
+	 * @param $rootDir
+	 * @throws Exception
+	 */
+	public function __construct(
         Smarty $smarty,
         Mobile_Detect $mobileDetect,
         FrontTemplateConfig $frontTemplateConfig,
@@ -159,7 +177,6 @@ class Design
         $this->defaultTemplateDir = $rootDir.'design/'.$theme.'/html';
         $this->smarty->setCompileDir($rootDir.'compiled/'.$theme);
         $this->smarty->setTemplateDir($this->defaultTemplateDir);
-
         // Создаем папку для скомпилированных шаблонов текущей темы
         if (!is_dir($this->smarty->getCompileDir())) {
             mkdir($this->smarty->getCompileDir(), 0777);
@@ -252,13 +269,13 @@ class Design
             $this->useDefaultDir();
         }
     }
-    
+
     /**
      * Проверка существует ли данный файл шаблона
-     * 
+     *
      * @param $tplFile
      * @return bool
-     * @throws \SmartyException
+     * @throws \Smarty\Exception
      */
     public function templateExists($tplFile)
     {
@@ -286,8 +303,8 @@ class Design
      * @param mixed $value
      * @param bool $dynamicJs Если установить в true, переменная будет доступна в файле scripts.tpl клиентского шаблона,
      * как обычная Smarty переменная
-     * @return \Smarty_Internal_Data
-     */
+     * @return Smarty
+	 */
     public function assign($var, $value, $dynamicJs = false)
     {
         
@@ -375,7 +392,7 @@ class Design
 
     public function getModuleTemplatesDir()
     {
-        return rtrim($this->moduleTemplateDir , '/');
+        return rtrim($this->moduleTemplateDir ?? '' , '/');
     }
 
     /*Установка директории файлов шаблона(отображения)*/

@@ -10,7 +10,7 @@
                                 <a class="d-flex align-items-center categories_menu__link{if $category->id == $c->id} selected{/if}" href="{url_generator route="category" url=$c->url}" data-category="{$c->id}">
                                     {if $c->image}
                                         {if $level == 1 }
-                                            {if strtolower(pathinfo($c->image, $smarty.const.PATHINFO_EXTENSION)) == 'svg'} 
+                                            {if strtolower($c->image|pathinfo) == 'svg'}
                                                 <span class="categories_menu__icon">
                                                     {$c->image|read_svg:$config->original_categories_dir}
                                                 </span>
@@ -30,7 +30,7 @@
                                     {if $level == 3}
                                         <div class="d-flex align-items-center justify-content-center categories_menu__image">
                                             {if $c->image}
-                                                {if strtolower(pathinfo($c->image, $smarty.const.PATHINFO_EXTENSION)) == 'svg'}
+                                                {if strtolower($c->image|pathinfo) == 'svg'}
                                                     {$c->image|read_svg:$config->original_categories_dir}
                                                 {else}
                                                 <picture>
@@ -49,7 +49,7 @@
                                         </div>
                                     {elseif $level == 1}
                                         {if $c->image}
-                                            {if strtolower(pathinfo($c->image, $smarty.const.PATHINFO_EXTENSION)) == 'svg'} 
+                                            {if strtolower($c->image|pathinfo) == 'svg'}
                                                 <span class="categories_menu__icon">
                                                     {$c->image|read_svg:$config->original_categories_dir}
                                                 </span>

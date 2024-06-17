@@ -389,7 +389,8 @@ class BackendImportHelper
 
         $featuresValuesEntity->deleteProductValue($productId, null, array_keys($featuresNames));
 
-        $valuesTransaction = "INSERT IGNORE INTO `__products_features_values` (`product_id`, `value_id`) VALUES ";
+        $valuesTransaction = /** @lang mysql */
+			"INSERT IGNORE INTO `__products_features_values` (`product_id`, `value_id`) VALUES ";
         $sqlValues = [];
 
         foreach ($featuresNames as $featureId => $featureName) {

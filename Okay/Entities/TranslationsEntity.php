@@ -38,8 +38,9 @@ class TranslationsEntity extends Entity
 
     /** @var array all translations */
     private $vars = [];
+	private bool $templateOnly;
 
-    public function __construct()
+	public function __construct()
     {
         parent::__construct();
         $serviceLocator = ServiceLocator::getInstance();

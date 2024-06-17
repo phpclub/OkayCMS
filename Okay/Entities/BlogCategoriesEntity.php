@@ -243,7 +243,7 @@ class BlogCategoriesEntity extends Entity
         }
 
         $sql = $this->queryFactory->newSqlQuery();
-        $sql->setStatement("UPDATE __blog b
+        $sql->setStatement(/** @lang mysql */ "UPDATE __blog b
                           LEFT JOIN __blog_categories_relation bc ON b.id = bc.post_id AND bc.position=(SELECT MIN(position) FROM __blog_categories_relation WHERE post_id=b.id LIMIT 1)
                           SET b.main_category_id = bc.category_id
                           WHERE b.id IN (:posts_ids)");

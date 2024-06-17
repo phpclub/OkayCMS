@@ -7,7 +7,7 @@
                 {* Logo *}
                 {if !empty({$settings->site_logo})}
                 <a class="cart_header__logo " href="{url_generator route='main'}">
-                    {if strtolower(pathinfo($settings->site_logo, $smarty.const.PATHINFO_EXTENSION)) == 'svg'}
+                    {if strtolower($settings->site_logo|pathinfo) == 'svg'}
                         {$settings->site_logo|read_svg:$config->design_images}
                     {else}
                         <img src="{$rootUrl}/{$config->design_images|escape}{$settings->site_logo|escape}?v={$settings->site_logo_version|escape}" alt="{$settings->site_name|escape}"/>
@@ -17,7 +17,7 @@
                 {if $settings->site_phones}
                     {foreach $settings->site_phones as $phone}
                         {if $phone@first}
-                        <a class="cart_header__phone" href="tel:{preg_replace('~[^0-9\+]~', '', $phone)}">
+                        <a class="cart_header__phone" href="tel:{$phone|preg_replace:'~[^0-9\+]~':''}">
                             <span>{$phone|escape}</span>
                         </a>
                         {/if}

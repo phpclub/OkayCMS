@@ -213,7 +213,7 @@ class BackendFeaturesValuesHelper
 
             foreach ($productsIds as $productId) {
                 $sql = $this->queryFactory->newSqlQuery();
-                $sql->setStatement("REPLACE INTO `__products_features_values` SET `product_id`=:product_id, `value_id`=:value_id")
+                $sql->setStatement(/** @lang mysql */ 'REPLACE INTO `__products_features_values` SET `product_id`=:product_id, `value_id`=:value_id')
                     ->bindValue('product_id', $productId)
                     ->bindValue('value_id', $unionSecondValue->id)
                     ->execute();

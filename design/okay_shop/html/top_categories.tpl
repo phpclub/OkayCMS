@@ -37,7 +37,7 @@
                                 <a class="top_categories__preview d-flex align-items-center flex-column" href="{url_generator route='category' url=$c->url}">
                                     <div class="top_categories__image d-flex align-items-center justify-content-center">
                                         {if $c->image}
-                                            {if strtolower(pathinfo($c->image, $smarty.const.PATHINFO_EXTENSION)) == 'svg'}
+                                            {if strtolower($c->image|pathinfo) == 'svg'}
                                                 {$c->image|read_svg:$config->original_categories_dir}
                                             {else}
                                             <picture>
